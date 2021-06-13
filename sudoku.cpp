@@ -215,7 +215,7 @@ int main() {
         }
         int solution = verifySolution(sudoBoard);
         cout << solution << endl;
-        // based on the input, do something
+        // based on the input, do something.
     }
 
 
