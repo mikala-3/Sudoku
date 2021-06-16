@@ -222,7 +222,7 @@ int main() {
         int num;
 
         cout << "Enter Y coordinate:  " << "\n";
-        cin >> x; // or std::getline(std::cin, str);
+        cin >> x; // or std::getline(std::cin, str);d
 
         cout << "Enter X coordinate:  " << "\n";
         cin >> y; // or std::getline(std::cin, str);
