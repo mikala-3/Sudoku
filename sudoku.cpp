@@ -6,7 +6,8 @@
 
 using namespace std;
 
-
+// N is the size of the 2D matrix   N*N
+#define N 9
 /* 
     config for sudoku
 */
@@ -169,6 +170,47 @@ int verifySolution(twoDArray *sudokuBoard) {
     //TODO, verify each subboard (i.e. 3x3)
 }
 
+bool isValid(twoDArray *sudokuBoard, int row, int col, int num) {
+    verifyRowsAndColumns *dict = new verifyRowsAndColumns[rows];
+    int sudokuNumbers[] = {1,2,3,4,5,6,7,8,9};
+
+    //put all possible sudokunumbers to the array and set taken to 0 which is equal to false (not taken)
+    for(int i = 0; i < 9; i++) {
+        dict[i].num = sudokuNumbers[i];
+        dict[i].taken = 0;
+    }
+    
+    //check row
+    for(int j = row*9; j < (row*9+9); j++) {
+        if(sudokuBoard[j].val == num) {
+            return false;
+        }
+    }
+
+    //check column
+    for(int k = col*9; k < 81; k+=9) {
+        if(sudokuBoard[k].val == num) {
+            return false;
+        }
+    }
+
+    //check box, 3x3
+    int tempX = 0;
+    int tempY = 0;
+    for(int l = row*9; l < (row*9+3); l++) {
+        tempX++;
+        for(int m = col*9; m < (col*9+27); m+=9) {
+            if(sudokuBoard[l].x == tempX && sudokuBoard[m].y == tempY) {
+                return false;
+            }
+            tempY++;
+        }
+
+    }
+
+    return true;
+}
+
 int main() {
 
     cout << "Sudoku"<< "\n";
@@ -180,7 +222,7 @@ int main() {
         int num;
 
         cout << "Enter Y coordinate:  " << "\n";
-        cin >> x; // or std::getline(std::cin, str);
+        cin >> x; // or std::getline(std::cin, str);d
 
         cout << "Enter X coordinate:  " << "\n";
         cin >> y; // or std::getline(std::cin, str);
@@ -217,7 +259,16 @@ int main() {
         cout << solution << endl;
         // based on the input, do something.
     }
-
+    // 0 means unassigned cells
+    int grid[9][9] = { { 3, 0, 6, 5, 0, 8, 4, 0, 0 },
+                       { 5, 2, 0, 0, 0, 0, 0, 0, 0 },
+                       { 0, 8, 7, 0, 0, 0, 0, 3, 1 },
+                       { 0, 0, 3, 0, 1, 0, 0, 8, 0 },
+                       { 9, 0, 0, 8, 6, 3, 0, 0, 5 },
+                       { 0, 5, 0, 0, 9, 0, 6, 0, 0 },
+                       { 1, 3, 0, 0, 0, 0, 2, 5, 0 },
+                       { 0, 0, 0, 0, 0, 0, 0, 7, 4 },
+                       { 0, 0, 5, 2, 0, 6, 3, 0, 0 } };
 
 }
 
