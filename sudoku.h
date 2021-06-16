@@ -7,3 +7,8 @@ struct twoDArray {
     int val;
     int interchangeable = 0;
 };
+
+struct verifyRowsAndColumns {
+    int num;
+    int taken = 0;
+};
