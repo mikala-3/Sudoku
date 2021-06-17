@@ -42,6 +42,8 @@ void displayBoard(int rows, int cols, int** sudoBoard) {
             index++;
 
         }
+        //first git commit
+        //second git commitdd
         if(rowCounter == N*3) {
             rowCounter = 0;
             cout << setw(2) << "]" << setw(2) << "\n\n";    
